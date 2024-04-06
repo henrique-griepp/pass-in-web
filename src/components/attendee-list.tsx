@@ -1,4 +1,16 @@
-import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, MoreHorizontal, Search } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+  MoreHorizontal,
+  Search,
+} from "lucide-react";
+import { IconButton } from "./icon-button";
+import { Table } from "./table/table";
+import { TableHeader } from "./table/table-header";
+import { TableCell } from "./table/table-cell";
+import { TableRow } from "./table/table-row";
 
 export const AttendeeList = () => {
   return (
@@ -8,93 +20,83 @@ export const AttendeeList = () => {
         <div className="gap-3 px-3 w-72 py-1.5 border border-current/10 rounded-lg text-sm flex items-center">
           <Search className=" size-4 text-emerald-300" />
           <input
-            className="bg-transparent flex-1 outline-none"
+            className=" bg-transparent border-0  flex-1 outline-none h-auto p-0 text-sm "
             placeholder="Buscar Participante..."
           />
         </div>
       </div>
-      <div className="border border-current/10 rounded-lg">
-        <table className="w-full ">
-          <thead>
-            <tr className=" border-b border-current/10">
-              <th
-                style={{ width: 48 }}
-                className="py-3 px-4 text-sm font-semibold text-left"
-              >
-                <input type="checkbox" />
-              </th>
-              <th className="py-3 px-4 text-sm font-semibold text-left">
-                Código
-              </th>
-              <th className="py-3 px-4 text-sm font-semibold text-left">
-                Participantes
-              </th>
-              <th className="py-3 px-4 text-sm font-semibold text-left">
-                Data de inscrição
-              </th>
-              <th className="py-3 px-4 text-sm font-semibold text-left">
-                Data de check-in
-              </th>
-              <th
-                style={{ width: 64 }}
-                className="py-3 px-4 text-sm font-semibold text-left"
-              ></th>
-            </tr>
-          </thead>
-          <tbody>
-            {Array.from({ length: 8 }).map((_, i) => {
-              return (
-                <tr key={i} className="border-b border-current/10">
-                  <td className="py-3 px-4 text-sm">
-                    <input type="checkbox" />
-                  </td>
-                  <td className="py-3 px-4 text-sm">1232352</td>
-                  <td className="py-3 px-4 text-sm">
-                    <div className="flex flex-col gap-1">
-                      <span className=" font-semibold  ">Henrique Griepp</span>
-                      <span>henrique@dafhd.com</span>
-                    </div>
-                  </td>
-                  <td className="py-3 px-4 text-sm">7 dias atras</td>
-                  <td className="py-3 px-4 text-sm">3 dias atras</td>
-                  <td className="py-3 px-4 text-sm">
-                    <button className=" border rounded-md p-1.5">
-                      <MoreHorizontal className="size-4" />
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-          <tfoot>
-            <tr>
-              <td className="py-3 px-4 text-sm" colSpan={3}>
-                Mostrando 10 de 228
-              </td>
-              <td className="py-3 px-4 text-sm text-right" colSpan={3}>
-                <div className=" inline-flex items-center gap-8">
-                    <span >Página 1 de 23</span>
+      <Table>
+        <thead>
+          <TableRow>
+            <TableHeader style={{ width: 48 }}>
+              <input
+                type="checkbox"
+                className=" size-4 bg-transparent focus:bg-transparent checked:bg-orange-500 rounded-sm focus:ring-2 focus:ring-orange-500"
+              />
+            </TableHeader>
+            <TableHeader>Código</TableHeader>
+            <TableHeader>Participantes</TableHeader>
+            <TableHeader>Data de inscrição</TableHeader>
+            <TableHeader>Data de check-in</TableHeader>
+            <TableHeader style={{ width: 64 }}></TableHeader>
+          </TableRow>
+        </thead>
+        <tbody>
+          {Array.from({ length: 8 }).map((_, i) => {
+            return (
+              <TableRow key={i} className="border-b border-current/10">
+                <TableCell>
+                  <input
+                    type="checkbox"
+                    className=" size-4 bg-transparent focus:bg-transparent checked:bg-orange-500 rounded-sm focus:ring-2 focus:ring-orange-500 focus:bg-orange-500"
+                  />
+                </TableCell>
+                <TableCell>1232352</TableCell>
+                <TableCell>
+                  <div className="flex flex-col gap-1">
+                    <span className=" font-semibold  ">Henrique Griepp</span>
+                    <span>henrique@dafhd.com</span>
+                  </div>
+                </TableCell>
+                <TableCell>7 dias atrás</TableCell>
+                <TableCell>3 dias atrás</TableCell>
+                <TableCell>
+                  <IconButton transparent>
+                    <MoreHorizontal className="size-4" />
+                  </IconButton>
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </tbody>
+        <tfoot>
+          <TableRow>
+            <TableCell colSpan={3}>
+              Mostrando 10 de 228
+            </TableCell>
+            <TableCell className="text-right" colSpan={3}>
+              <div className=" inline-flex items-center gap-8">
+                <span>Página 1 de 23</span>
 
                 <div className="flex gap-1.5">
-                  <button className=" border rounded-md p-1.5 bg-zinc-500/30">
+                  <IconButton>
                     <ChevronsLeft className="size-4" />
-                  </button>
-                  <button className=" border rounded-md p-1.5 bg-zinc-500/30">
+                  </IconButton>
+                  <IconButton>
                     <ChevronLeft className="size-4" />
-                  </button>
-                  <button className=" border rounded-md p-1.5 bg-zinc-500/30">
+                  </IconButton>
+                  <IconButton>
                     <ChevronRight className="size-4" />
-                  </button>
-                  <button className=" border rounded-md p-1.5 bg-zinc-500/30">
+                  </IconButton>
+                  <IconButton>
                     <ChevronsRight className="size-4" />
-                  </button>
+                  </IconButton>
                 </div>
-                </div>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
+              </div>
+            </TableCell>
+          </TableRow>
+        </tfoot>
+      </Table>
     </div>
   );
 };
